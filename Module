@@ -1,0 +1,10 @@
+local old
+old = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
+    if getnamecallmethod() == "FireServer" and self.Name == "DataEvent" then
+        if ({...})[1] == "BanMe" then
+            warn("[AC] Blocked: " .. ({...})[2])
+            return
+        end
+    end
+    return old(self, ...)
+end))
